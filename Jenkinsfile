@@ -3,9 +3,9 @@ pipeline {
 	/* A Declarative Pipeline */
 	/* any just means use any available node*/
 	agent any
-	
+
 	tools{
-      maven 'localMaven'
+      maven 'localMavel'
     }
 
 	stages {
