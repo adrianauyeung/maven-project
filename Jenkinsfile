@@ -21,5 +21,12 @@ pipeline {
 				}
 			}
 		}
+
+		stage('Deploy to Staging') {
+			steps {
+				/* Used to define a job to build */
+				build job: 'deploy-to-staging'
+			}
+		}
 	}
 }
