@@ -24,6 +24,7 @@ pipeline {
 
 		stage('Deploy to Staging') {
 			steps {
+				sh 'mvn checkstyle:checkstyle'
 				/* Used to define a job to build */
 				build job: 'jf-deploy-to-staging'
 			}
