@@ -32,5 +32,27 @@ pipeline {
 				build job: 'jf-deploy-to-staging'
 			}
 		}
+
+		stage ('Deploy to Production') {
+			steps{
+				/* This create a confirmation button before it deploys
+				Currently it is set to expire or fail after 5 days without
+				a response */
+				timeout(time:5, unit: 'DAYS'){
+					input message: 'Approve PRODUCTION deploy?'
+				}
+
+				build job: 'jf-deploy-to-production'
+			}
+			post {
+				success {
+					echo 'Code deployed to Production'
+				}
+
+				failure {
+					echo 'Deployment failed.'
+				}
+			}
+		}
 	}
 }
