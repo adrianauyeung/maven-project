@@ -29,6 +29,9 @@ pipeline {
 				echo 'Dp checkstyle'
 				sh 'mvn checkstyle:checkstyle'
 				/* Used to define a job to build */
+				/* This failed before cause the build was set to
+				Use Latest Build, instead IT SHOULD BE
+				Use Build from Upstream */
 				build job: 'jf-deploy-to-staging'
 			}
 		}
@@ -38,6 +41,8 @@ pipeline {
 				/* This create a confirmation button before it deploys
 				Currently it is set to expire or fail after 5 days without
 				a response */
+				/* This brings up a Input Required menu item for the build
+				, you will need to click into it to proceed */
 				timeout(time:5, unit: 'DAYS'){
 					input message: 'Approve PRODUCTION deploy?'
 				}
